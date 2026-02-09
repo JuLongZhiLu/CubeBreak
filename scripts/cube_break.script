@@ -1,0 +1,75 @@
+-- 建议将效果函数写在外面或上方，保持逻辑清晰
+local function break_effect(self)
+	local pos = go.get_position() -- 获取当前方块的位置
+	local fragment_num = 10        -- 抛出的碎片数量
+
+	for i = 1, fragment_num do
+		-- 1. 在当前位置创建碎片
+		-- 注意：#fragment_factory 是你 factory 组件的 ID
+		local fragment_id = factory.create("#fragment_factory", pos)
+
+		-- 2. 设置随机大小 (0.1 到 0.3 倍之间)
+		local random_s = math.random(1, 3) / 10
+		go.set_scale(vmath.vector3(random_s, random_s, random_s), fragment_id)
+
+		-- 3. 计算随机抛出的力
+		-- x 和 z 向四周扩散，y 向上抛起（模拟爆炸喷发感）
+		local force_x = math.random(-500, 500)
+		local force_y = math.random(400, 800)  -- 向上偏向的力
+		local force_z = math.random(-500, 500)
+		local force_vec = vmath.vector3(force_x, force_y, force_z)
+
+		-- 4. 给碎片施加冲量 (Impulse)
+		-- 注意：这里假设你的 fragment 里的碰撞组件 ID 是 "collisionobject"
+		local collision_url = msg.url(nil, fragment_id, "collisionobject")
+		msg.post(collision_url, "apply_impulse", {
+			impulse = force_vec * random_s, -- 碎片越大，受力相对越重
+			position = pos
+		})
+
+		-- 5. [可选] 自动清理：3秒后删除碎片，防止物体过多卡顿
+		go.animate(fragment_id, "euler.x", go.PLAYBACK_ONCE_FORWARD, 0, go.EASING_LINEAR, 3, 0, function()
+			go.delete(fragment_id)
+		end)
+	end
+end
+
+function init(self)
+	math.randomseed(os.time()) -- 初始化随机种子
+	
+	-- 1. 初始化状态
+	msg.post("#break0", "enable")
+	msg.post("#break1", "disable")
+	msg.post("#break2", "disable")
+
+	-- 2. 必须获取输入焦点，否则收不到点击事件
+	msg.post(".", "acquire_input_focus")
+
+	-- 3. 记录点击次数
+	self.click_count = 0
+end
+
+function on_input(self, action_id, action)
+	-- 假设你的输入映射中左键或触摸的 ID 是 "touch"
+	-- action.pressed 确保只在按下那一瞬间触发一次
+	if action_id == hash("touch") and action.pressed then
+		self.click_count = self.click_count + 1
+
+		if self.click_count == 1 then
+			-- 第一次点击：0关1开
+			msg.post("#break0", "disable")
+			msg.post("#break1", "enable")
+-- 			-- 给新的模型来一个缩放动画，像弹出来一样
+-- 			go.set("#break1", "scale", vmath.vector3(0,0,0))
+-- 			go.animate("#break1", "scale", go.PLAYBACK_ONCE_FORWARD, vmath.vector3(1,1,1), go.EASING_OUTBACK, 0.2)
+-- 
+		elseif self.click_count == 2 then
+			-- 第二次点击：1关2开，触发效果
+			msg.post("#break1", "disable")
+			msg.post("#break2", "enable")
+		elseif self.click_count == 3 then
+			break_effect(self)
+			msg.post("#break2", "disable")
+		end
+	end
+end

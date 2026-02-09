@@ -1,0 +1,94 @@
+name: "main"
+scale_along_z: 0
+embedded_instances {
+  id: "cube"
+  data: "components {\n"
+  "  id: \"cube_break\"\n"
+  "  component: \"/scripts/cube_break.script\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"break0\"\n"
+  "  type: \"model\"\n"
+  "  data: \"mesh: \\\"/models/break0.glb\\\"\\n"
+  "name: \\\"{{NAME}}\\\"\\n"
+  "materials {\\n"
+  "  name: \\\"palette\\\"\\n"
+  "  material: \\\"/builtins/materials/model_instanced.material\\\"\\n"
+  "  textures {\\n"
+  "    sampler: \\\"tex0\\\"\\n"
+  "    texture: \\\"/models/break1.png\\\"\\n"
+  "  }\\n"
+  "}\\n"
+  "\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"break1\"\n"
+  "  type: \"model\"\n"
+  "  data: \"mesh: \\\"/models/break1.glb\\\"\\n"
+  "name: \\\"{{NAME}}\\\"\\n"
+  "materials {\\n"
+  "  name: \\\"palette.001\\\"\\n"
+  "  material: \\\"/builtins/materials/model_instanced.material\\\"\\n"
+  "  textures {\\n"
+  "    sampler: \\\"tex0\\\"\\n"
+  "    texture: \\\"/models/break1.png\\\"\\n"
+  "  }\\n"
+  "}\\n"
+  "\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"break2\"\n"
+  "  type: \"model\"\n"
+  "  data: \"mesh: \\\"/models/break2.glb\\\"\\n"
+  "name: \\\"{{NAME}}\\\"\\n"
+  "materials {\\n"
+  "  name: \\\"palette.002\\\"\\n"
+  "  material: \\\"/builtins/materials/model_instanced.material\\\"\\n"
+  "  textures {\\n"
+  "    sampler: \\\"tex0\\\"\\n"
+  "    texture: \\\"/models/break1.png\\\"\\n"
+  "  }\\n"
+  "}\\n"
+  "\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"fragment_factory\"\n"
+  "  type: \"factory\"\n"
+  "  data: \"prototype: \\\"/prefabs/fragment.go\\\"\\n"
+  "\"\n"
+  "}\n"
+  ""
+}
+embedded_instances {
+  id: "camera"
+  data: "embedded_components {\n"
+  "  id: \"camera\"\n"
+  "  type: \"camera\"\n"
+  "  data: \"aspect_ratio: 1.0\\n"
+  "fov: 0.7854\\n"
+  "near_z: 0.1\\n"
+  "far_z: 1000.0\\n"
+  "auto_aspect_ratio: 1\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: 10.0
+    y: 7.0
+    z: -14.0
+  }
+  rotation {
+    x: -0.06714905
+    y: 0.9620719
+    z: 0.077902995
+    w: 0.25266537
+  }
+}
+embedded_instances {
+  id: "gui"
+  data: "components {\n"
+  "  id: \"hud\"\n"
+  "  component: \"/guis/hud.gui\"\n"
+  "}\n"
+  ""
+}
