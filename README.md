@@ -1,13 +1,12 @@
-# Welcome to Defold
+# Community Challenge #5: Break It! 
+https://forum.defold.com/t/community-challenge-5-break-it/82303
 
-This project was created from the "empty" project template.
+Version 1.0.0
 
-The settings in ["game.project"](defold://open?path=/game.project) are all the default. A bootstrap empty ["main.collection"](defold://open?path=/main/main.collection) is included.
 
-Check out [the documentation pages](https://defold.com/learn) for examples, tutorials, manuals and API docs.
+Play on browser
+https://julongzhilu.itch.io/cubebreak
 
-If you run into trouble, help is available in [our forum](https://forum.defold.com).
+<img width="1200" height="800" alt="image" src="https://github.com/user-attachments/assets/5044bd17-937d-4ce4-8b78-7d208e1939e2" />
 
-Happy Defolding!
 
----
