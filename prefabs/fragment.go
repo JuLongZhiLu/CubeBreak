@@ -5,7 +5,7 @@ embedded_components {
   "name: \"{{NAME}}\"\n"
   "materials {\n"
   "  name: \"palette\"\n"
-  "  material: \"/builtins/materials/model_instanced.material\"\n"
+  "  material: \"/light_and_shadows/materials/model/model_instanced.material\"\n"
   "  textures {\n"
   "    sampler: \"tex0\"\n"
   "    texture: \"/models/break1.png\"\n"

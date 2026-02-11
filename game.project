@@ -22,6 +22,7 @@ scale_mode = stretch
 
 [project]
 title = CubeBreak
+dependencies#0 = https://github.com/Dragosha/defold-light-and-shadows/archive/master.zip
 
 [render]
 clear_color_red = 0.7

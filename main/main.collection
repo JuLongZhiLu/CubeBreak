@@ -1,4 +1,16 @@
 name: "main"
+instances {
+  id: "sun"
+  prototype: "/light_and_shadows/props/sun.go"
+  position {
+    x: 39.0
+    y: 56.0
+  }
+  rotation {
+    z: -0.17470399
+    w: 0.984621
+  }
+}
 scale_along_z: 0
 embedded_instances {
   id: "cube"
@@ -13,7 +25,7 @@ embedded_instances {
   "name: \\\"{{NAME}}\\\"\\n"
   "materials {\\n"
   "  name: \\\"palette\\\"\\n"
-  "  material: \\\"/builtins/materials/model_instanced.material\\\"\\n"
+  "  material: \\\"/light_and_shadows/materials/model/model_instanced.material\\\"\\n"
   "  textures {\\n"
   "    sampler: \\\"tex0\\\"\\n"
   "    texture: \\\"/models/break1.png\\\"\\n"
@@ -28,7 +40,7 @@ embedded_instances {
   "name: \\\"{{NAME}}\\\"\\n"
   "materials {\\n"
   "  name: \\\"palette.001\\\"\\n"
-  "  material: \\\"/builtins/materials/model_instanced.material\\\"\\n"
+  "  material: \\\"/light_and_shadows/materials/model/model_instanced.material\\\"\\n"
   "  textures {\\n"
   "    sampler: \\\"tex0\\\"\\n"
   "    texture: \\\"/models/break1.png\\\"\\n"
@@ -43,7 +55,7 @@ embedded_instances {
   "name: \\\"{{NAME}}\\\"\\n"
   "materials {\\n"
   "  name: \\\"palette.002\\\"\\n"
-  "  material: \\\"/builtins/materials/model_instanced.material\\\"\\n"
+  "  material: \\\"/light_and_shadows/materials/model/model_instanced.material\\\"\\n"
   "  textures {\\n"
   "    sampler: \\\"tex0\\\"\\n"
   "    texture: \\\"/models/break1.png\\\"\\n"
@@ -91,4 +103,9 @@ embedded_instances {
   "  component: \"/guis/hud.gui\"\n"
   "}\n"
   ""
+}
+embedded_instances {
+  id: "light"
+  children: "sun"
+  data: ""
 }
