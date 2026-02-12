@@ -1,0 +1,6 @@
+attribute mediump vec4 position;
+uniform mediump mat4 mtx_worldviewproj;
+
+void main() {
+	gl_Position = mtx_worldviewproj * position;
+}

@@ -1,6 +1,30 @@
+local function create_shockwave(pos)
+	-- 1. 在爆炸位置创建冲击波模型
+	local shock_id = factory.create("#shockwave_factory", pos)
+
+	-- 2. 初始状态：极小
+	go.set_scale(vmath.vector3(0.1, 0.1, 0.1), shock_id)
+
+	-- 3. 动画：迅速变大
+	-- 这里的 10, 10, 10 是最终大小，你可以根据方块大小调整
+	go.animate(shock_id, "scale", go.PLAYBACK_ONCE_FORWARD, vmath.vector3(50, 50, 50), go.EASING_OUTCIRC, 0.3)
+
+	-- 4. 动画：渐隐（需要模型的材质有 tint 属性）
+	-- 假设模型组件 ID 是 "model"
+	local model_url = msg.url(nil, shock_id, "model")
+
+	-- 将透明度(w分量)从 1 变到 0
+	go.animate(model_url, "tint.w", go.PLAYBACK_ONCE_FORWARD, 0, go.EASING_OUTQUAD, 0.3, 0, function()
+		go.delete(shock_id) -- 动画结束删除
+	end)
+end
+
 -- 建议将效果函数写在外面或上方，保持逻辑清晰
 local function break_effect(self)
 	local pos = go.get_position() 
+
+	create_shockwave(pos) -- <--- 调用冲击波
+	
 	local fragment_num = 12        -- 稍微增加一点碎片
 
 	-- 【动画 1】：方块消失前的视觉反馈
