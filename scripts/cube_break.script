@@ -2,6 +2,8 @@ local function create_shockwave(pos)
 	-- 1. 在爆炸位置创建冲击波模型
 	local shock_id = factory.create("#shockwave_factory", pos)
 
+	sound.play("#explode")
+
 	-- 2. 初始状态：极小
 	go.set_scale(vmath.vector3(0.1, 0.1, 0.1), shock_id)
 
@@ -89,7 +91,8 @@ function on_input(self, action_id, action)
 			-- 给 break1 来个轻微的点击震动效果
 			go.set_scale(vmath.vector3(1.1, 0.9, 1.1)) -- 压扁一点点
 			go.animate(".", "scale", go.PLAYBACK_ONCE_FORWARD, vmath.vector3(1,1,1), go.EASING_OUTELASTIC, 0.3)
-
+			sound.play("#break")
+			
 		elseif self.click_count == 2 then
 			msg.post("#break1", "disable")
 			msg.post("#break2", "enable")
@@ -97,7 +100,7 @@ function on_input(self, action_id, action)
 			-- go.set("#break2", "tint", vmath.vector4(1, 0.5, 0.5, 1))
 			go.set_scale(vmath.vector3(1.1, 0.9, 1.1)) -- 压扁一点点
 			go.animate(".", "scale", go.PLAYBACK_ONCE_FORWARD, vmath.vector3(1,1,1), go.EASING_OUTELASTIC, 0.3)
-
+			sound.play("#break")
 		elseif self.click_count == 3 then
 			-- 触发爆炸函数
 			break_effect(self)

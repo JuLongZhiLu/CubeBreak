@@ -104,6 +104,18 @@ embedded_instances {
   "  data: \"prototype: \\\"/prefabs/shockwave.go\\\"\\n"
   "\"\n"
   "}\n"
+  "embedded_components {\n"
+  "  id: \"break\"\n"
+  "  type: \"sound\"\n"
+  "  data: \"sound: \\\"/sounds/524312__bertsz__rock-destroy.ogg\\\"\\n"
+  "\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"explode\"\n"
+  "  type: \"sound\"\n"
+  "  data: \"sound: \\\"/sounds/GUNAuto_Shot beretta m12 9 mm (ID 0437)_BigSoundBank.com.ogg\\\"\\n"
+  "\"\n"
+  "}\n"
   ""
   position {
     y: 2.0
