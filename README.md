@@ -1,7 +1,7 @@
 # Community Challenge #5: Break It! 
 https://forum.defold.com/t/community-challenge-5-break-it/82303
 
-Version 1.2.0
+Version 1.3.0
 
 
 Play on browser
